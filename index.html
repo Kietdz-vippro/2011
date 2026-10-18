@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 20/10 - Yeon Nek</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+    background: #180510;
+}
+
+.page {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #59152f 0%, #300919 55%, #100309 100%);
+}
+
+#page1 {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#page2 {
+    z-index: 2;
+    visibility: hidden;
+}
+
+#rotate-content {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+/* TRANG 1 */
+
+#message {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 20px;
+}
+
+.line {
+    margin: 20px 0;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.white-neon {
+    color: white;
+    font-size: clamp(30px, 6vw, 55px);
+    text-shadow: 0 0 8px white, 0 0 20px #ffb6dc, 0 0 40px #ff4fa3;
+}
+
+.pink-neon {
+    color: #ff9bd5;
+    font-size: clamp(35px, 7vw, 65px);
+    text-shadow: 0 0 8px #ff9bd5, 0 0 25px #ff4fa3, 0 0 50px #ff168b;
+}
+
+.gold-neon {
+    color: #ffe6a6;
+    font-size: clamp(22px, 4vw, 35px);
+    text-shadow: 0 0 8px #fff0b0, 0 0 20px #ffb52e, 0 0 35px #ff8c00;
+}
+
+@keyframes glow {
+    from { filter: brightness(0.85); }
+    to { filter: brightness(1.3); }
+}
+
+.main-button {
+    position: relative;
+    z-index: 10;
+    padding: 15px 28px;
+    border: 2px solid #ff9bd5;
+    border-radius: 40px;
+    color: white;
+    background: rgba(255, 70, 160, 0.22);
+    box-shadow: 0 0 15px #ff4fa3, inset 0 0 10px #ff4fa3;
+    font-size: 18px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.main-button:hover {
+    transform: scale(1.08);
+    background: rgba(255, 70, 160, 0.5);
+}
+
+/* CHỮ RƠI TRANG 2 */
+
+.falling-message {
+    position: absolute;
+    top: -100px;
+    left: var(--left);
+    z-index: 2;
+    color: white;
+    font-size: clamp(14px, 2.3vw, 21px);
+    white-space: nowrap;
+    text-shadow: 0 0 5px white, 0 0 12px white, 0 0 22px #ff8ac5, 0 0 35px #ff4fa3;
+    pointer-events: none;
+    animation: fallingText var(--duration) linear var(--delay) infinite,
+               swayText 3s ease-in-out infinite alternate;
+}
+
+@keyframes fallingText {
+    from { top: -100px; }
+    to { top: 110%; }
+}
+
+@keyframes swayText {
+    from {
+        margin-left: -25px;
+        rotate: -8deg;
+    }
+    to {
+        margin-left: 25px;
+        rotate: 8deg;
+    }
+}
+
+/* ẢNH RƠI VÀ LẮC LƯ */
+
+.falling-photo {
+    position: absolute;
+    top: -190px;
+    left: var(--left);
+    width: clamp(85px, 13vw, 135px);
+    height: clamp(115px, 18vw, 175px);
+    z-index: 3;
+    pointer-events: none;
+    animation: fallingPhoto var(--duration) linear var(--delay) infinite,
+               swayPhoto 3s ease-in-out infinite alternate;
+}
+
+.falling-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid white;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #ff8ac5, 0 0 30px #ff4fa3;
+}
+
+@keyframes fallingPhoto {
+    from { top: -190px; }
+    to { top: 110%; }
+}
+
+@keyframes swayPhoto {
+    from {
+        margin-left: -20px;
+        rotate: -6deg;
+    }
+    to {
+        margin-left: 20px;
+        rotate: 6deg;
+    }
+}
+
+/* TIM BAY */
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    z-index: 4;
+    color: #ff80c0;
+    pointer-events: none;
+    text-shadow: 0 0 10px #ff4fa3;
+    animation: heartFly linear forwards;
+}
+
+@keyframes heartFly {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    100% {
+        transform: translateY(-115vh) rotate(360deg) scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* ÁNH SAO */
+
+.sparkle {
+    position: fixed;
+    z-index: 1;
+    color: white;
+    pointer-events: none;
+    text-shadow: 0 0 8px white, 0 0 15px #ff8ac5;
+    animation: sparkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+    from { opacity: 0.2; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+/* PHÁO HOA */
+
+.rocket {
+    position: fixed;
+    z-index: 4;
+    width: 5px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff4bd;
+    box-shadow: 0 0 10px #fff, 0 0 20px #ff80c0;
+    pointer-events: none;
+}
+
+.firework-particle {
+    position: fixed;
+    z-index: 4;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* ẢNH THAY CHO ĐÁM MÂY */
+
+#cloudTransition {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#cloudTransition.active {
+    display: grid;
+}
+
+.transition-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transform: scale(0);
+}
+
+#cloudTransition.cover .transition-image {
+    animation: imageCover 0.8s ease-in forwards;
+    animation-delay: var(--delay);
+}
+
+#cloudTransition.shrink .transition-image {
+    animation: imageShrink 0.9s ease-out forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes imageCover {
+    from {
+        opacity: 0;
+        transform: scale(0) rotate(-15deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.5) rotate(0deg);
+    }
+}
+
+@keyframes imageShrink {
+    from {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0) rotate(15deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .falling-message {
+        font-size: 14px;
+    }
+
+    .main-button {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NHẠC YOUTUBE -->
+<div id="youtubeMusic" style="position:fixed;width:1px;height:1px;left:-100px;top:-100px;overflow:hidden;pointer-events:none;">
+    <div id="youtubePlayer"></div>
+</div>
+
+<!-- TRANG 1 -->
+
+<div class="page" id="page1">
+    <div id="message">
+        <div class="line white-neon">Chúc mừng 20/10</div>
+        <div class="line pink-neon">♥ Yeon Nek ♥</div>
+        <div class="line gold-neon">Gửi cho congchua nhỏ</div>
+    </div>
+
+    <button class="main-button" id="nextButton">
+        bấm vào đây nekk 💗
+    </button>
+</div>
+
+<!-- TRANG 2 -->
+
+<div class="page" id="page2">
+    <div id="rotate-content">
+
+        <!-- 6 CÂU CHÚC -->
+
+        <div class="falling-message" style="--left:10%;--duration:12s;--delay:0s">
+            Đông đến roii
+        </div>
+
+        <div class="falling-message" style="--left:75%;--duration:15s;--delay:2s">
+            Chúc bạn nhỏ 20/10 hạnh phúc
+        </div>
+
+        <div class="falling-message" style="--left:35%;--duration:13s;--delay:4s">
+            Cám on vì đã xuất hiện
+        </div>
+
+        <div class="falling-message" style="--left:85%;--duration:14s;--delay:1s">
+            Mong mọi điều tốt đẹp sẽ đến với bbi
+        </div>
+
+        <div class="falling-message" style="--left:20%;--duration:16s;--delay:5s">
+            Tặng bé 20/10 nha
+        </div>
+
+        <div class="falling-message" style="--left:60%;--duration:12s;--delay:3s">
+            Yeu nhieu lam ak
+        </div>
+
+        <!-- BIỂU TƯỢNG TRANG TRÍ -->
+
+        <div class="falling-message" style="--left:45%;--duration:15s;--delay:7s">💗</div>
+        <div class="falling-message" style="--left:5%;--duration:14s;--delay:6s">✨</div>
+        <div class="falling-message" style="--left:90%;--duration:13s;--delay:8s">🌸</div>
+        <div class="falling-message" style="--left:55%;--duration:16s;--delay:9s">💕</div>
+        <div class="falling-message" style="--left:30%;--duration:14s;--delay:10s">🩷</div>
+        <div class="falling-message" style="--left:70%;--duration:15s;--delay:11s">💖</div>
+
+        <!-- 5 ẢNH RƠI -->
+
+        <div class="falling-photo" style="--left:15%;--duration:14s;--delay:0s">
+            <img src="anh1.jpg" alt="Ảnh 1">
+        </div>
+
+        <div class="falling-photo" style="--left:75%;--duration:17s;--delay:3s">
+            <img src="anh2.jpg" alt="Ảnh 2">
+        </div>
+
+        <div class="falling-photo" style="--left:40%;--duration:15s;--delay:6s">
+            <img src="anh3.jpg" alt="Ảnh 3">
+        </div>
+
+        <div class="falling-photo" style="--left:85%;--duration:18s;--delay:9s">
+            <img src="anh4.jpg" alt="Ảnh 4">
+        </div>
+
+        <div class="falling-photo" style="--left:55%;--duration:16s;--delay:12s">
+            <img src="anh5.jpg" alt="Ảnh 5">
+        </div>
+
+    </div>
+</div>
+
+<!-- HIỆU ỨNG ẢNH CHUYỂN TRANG -->
+
+<div id="cloudTransition"></div>
+
+<script>
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const nextButton = document.getElementById("nextButton");
+const cloudTransition = document.getElementById("cloudTransition");
+
+let transitioning = false;
+let youtubePlayer;
+let youtubeReady = false;
+let musicRequested = false;
+
+/* TẠO TRÌNH PHÁT YOUTUBE */
+function onYouTubeIframeAPIReady() {
+    youtubePlayer = new YT.Player("youtubePlayer", {
+        width: "1",
+        height: "1",
+        videoId: "VIDEO_ID_BAI_HAT",
+        playerVars: {
+            autoplay: 0,
+            controls: 0,
+            loop: 1,
+            playlist: "https://www.youtube.com/watch?v=U4tOd6KBRwY&list=RDU4tOd6KBRwY&start_radio=1"
+        },
+        events: {
+            onReady: function(event) {
+                youtubeReady = true;
+                event.target.setVolume(70);
+
+                if (musicRequested) {
+                    event.target.playVideo();
+                }
+            }
+        }
+    });
+}
+
+/* TẢI API YOUTUBE */
+(function() {
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+})();
+
+/* CHUYỂN TRANG + PHÁT NHẠC KHI BẤM NÚT */
+nextButton.addEventListener("click", function() {
+    if (transitioning) return;
+
+    musicRequested = true;
+
+    if (youtubeReady && youtubePlayer) {
+        youtubePlayer.playVideo();
+    }
+
+    transitioning = true;
+    nextButton.disabled = true;
+
+    cloudTransition.innerHTML = "";
+
+    for (let i = 0; i < 30; i++) {
+        const img = document.createElement("img");
+
+        img.src = "anh.jpg";
+        img.className = "transition-image";
+        img.alt = "";
+
+        img.style.setProperty(
+            "--delay",
+            (Math.random() * 0.3) + "s"
+        );
+
+        cloudTransition.appendChild(img);
+    }
+
+    cloudTransition.classList.add("active", "cover");
+
+    setTimeout(function() {
+        page2.style.visibility = "visible";
+        page2.style.zIndex = "3";
+    }, 850);
+
+    setTimeout(function() {
+        cloudTransition.classList.remove("cover");
+        cloudTransition.classList.add("shrink");
+    }, 1100);
+
+    setTimeout(function() {
+        page1.style.display = "none";
+        page2.style.zIndex = "2";
+
+        cloudTransition.classList.remove("active", "shrink");
+        cloudTransition.innerHTML = "";
+    }, 2100);
+});
+
+/* TIM BAY */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+
+    const hearts = ["♥", "♡", "💗", "💕"];
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+    const duration = 5 + Math.random() * 5;
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, duration * 1000);
+}
+
+setInterval(createHeart, 700);
+
+/* ÁNH SAO */
+function createSparkle() {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.textContent = "✦";
+
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.top = Math.random() * 100 + "vh";
+    sparkle.style.fontSize = (8 + Math.random() * 15) + "px";
+    sparkle.style.animationDelay = Math.random() * 2 + "s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(function() {
+        sparkle.remove();
+    }, 5000);
+}
+
+setInterval(createSparkle, 400);
+
+/* PHÁO HOA */
+function launchFirework() {
+    const x = 10 + Math.random() * 80;
+    const startY = window.innerHeight + 10;
+    const endY = window.innerHeight * (0.15 + Math.random() * 0.35);
+
+    const rocket = document.createElement("div");
+    rocket.className = "rocket";
+    rocket.style.left = x + "vw";
+    rocket.style.top = startY + "px";
+
+    document.body.appendChild(rocket);
+
+    const travelTime = 700 + Math.random() * 500;
+    const startTime = performance.now();
+
+    function moveRocket(now) {
+        const progress = Math.min((now - startTime) / travelTime, 1);
+        const currentY = startY + (endY - startY) * progress;
+
+        rocket.style.top = currentY + "px";
+
+        if (progress < 1) {
+            requestAnimationFrame(moveRocket);
+        } else {
+            rocket.remove();
+            explode(x * window.innerWidth / 100, endY);
+        }
+    }
+
+    requestAnimationFrame(moveRocket);
+}
+
+function explode(x, y) {
+    const colors = ["#ff4fa3", "#ffd166", "#ffffff", "#a78bfa", "#7df9ff"];
+
+    for (let i = 0; i < 35; i++) {
+        const particle = document.createElement("div");
+        particle.className = "firework-particle";
+
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        particle.style.background = color;
+        particle.style.color = color;
+        particle.style.left = x + "px";
+        particle.style.top = y + "px";
+
+        document.body.appendChild(particle);
+
+        const angle = Math.PI * 2 * i / 35;
+        const speed = 50 + Math.random() * 130;
+        const dx = Math.cos(angle) * speed;
+        const dy = Math.sin(angle) * speed;
+
+        const animation = particle.animate([
+            {
+                transform: "translate(0, 0) scale(1)",
+                opacity: 1
+            },
+            {
+                transform: `translate(${dx}px, ${dy}px) scale(0.2)`,
+                opacity: 0
+            }
+        ], {
+            duration: 800 + Math.random() * 500,
+            easing: "ease-out"
+        });
+
+        animation.onfinish = function() {
+            particle.remove();
+        };
+    }
+}
+
+setInterval(launchFirework, 1500);
+</script>
+
+</body>
+</html>
